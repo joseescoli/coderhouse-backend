@@ -90,7 +90,8 @@ class ProductManager {
         if ( this.products.some( p => p.id === ID) ) {
             return this.products.find(p => p.id === ID)
         } else {
-            return `ID: ${ID} Not found`
+            console.log( `ID: ${ID} Not found` );
+            return false
         }
 
     }
