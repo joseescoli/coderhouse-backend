@@ -70,11 +70,11 @@ class ProductManager {
                 this.#saveProducts()
             } else {
                 console.log('One or several attributes do not have proper information. Please, verify!');
-                return 'One or several attributes do not have proper information. Please, verify!'
+                return false
             }
         } else {
             console.log('Duplicate "code" attribute! Please, choose another!');
-            return 'Duplicate "code" attribute! Please, choose another!'
+            return false
         }
     }
 
@@ -111,17 +111,21 @@ class ProductManager {
                     const oldProd = this.products[index]
                     this.products[index] = { ...oldProd, ...obj }
                     this.#saveProducts()
-                    return "Product updated!"
+                    console.log( "Product updated!" );
+                    return true
                 } else {
-                    return "Product not found!"
+                    console.log( "Product not found!" );
+                    return false
                 }
 
             } else {
                 console.log('Duplicate "code" attribute! Please, choose another!');
+                return false
             }
 
         } else {
             console.log(`ID: ${obj.id} Not found`)
+            return false
         }
     
 
@@ -140,9 +144,11 @@ class ProductManager {
             const filter = this.products.filter( (prods) => prods.id !== ID);
             this.products = [...filter]
             this.#saveProducts()
-            return `Product ID: ${ID} removed!`
+            console.log( `Product ID: ${ID} removed!` );
+            return true
         } else {
-            return `ID: ${ID} not found`
+            console.log( `ID: ${ID} not found` );
+            return false
         }
 
     }
